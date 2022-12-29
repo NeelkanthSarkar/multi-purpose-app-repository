@@ -1,0 +1,26 @@
+.list-group-item{
+    padding: 1rem 0rem 1rem 2rem;
+    font-size: large;
+    font-weight: 500;
+    color: gray;
+    background-color: white;
+    margin-bottom: 4px;
+    margin-left: 2px;
+}
+.list-group-item:hover{
+    color: white;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.leftpanel{
+    
+    background-color: rgb(233, 255, 231);
+    height: 87vh;
+}
+.list-group{
+    width: 25vw;
+    border-right: 1px solid lightgrey;
+}
+#rightpanel{
+    width: 100%;
+}

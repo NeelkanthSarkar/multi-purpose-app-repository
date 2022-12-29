@@ -1,0 +1,70 @@
+<div class="container-fluid p-0">
+    <div class="w-100 bg-success p-2">
+        <div class="d-flex">
+            <a class="btn btn-light px-3 py-2 fw-bold fs-6" routerLink=".."><i class="bi bi-arrow-left mx-2 fs-5" id="backbutton"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+          <div class="card my-3 imagecard">
+            <div class="card-body">
+                <img src={{userProfileInfo.profilepic}} id="userprofilepic"/>
+            </div>
+            <div class="card-footer text-center">
+                <button class="btn btn-primary btn-sm px-4" (click)="changeProfile()">
+                  Change Profile<input type="file" accept="image/jpg,image/jpeg,image/png" id="input-type-file" 
+                  style="display: none;" (change)="changeProfileInputFieldClicked($event)"/></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+           <div class="card personaldetailscard">
+            <table class="table table-borderless">
+                <tbody *ngIf="displayEditDetailsBox==false;else editDetailsBox">
+                    <tr>
+                        <th scope="col" colspan="2"><span class="d-flex justify-content-between px-3">
+                          <label>Personal Details</label>
+                          <button class="btn btn-light btn-sm" (click)="showEditPersonalDetailsBox()"><i class="bi bi-pencil-fill"></i>Edit</button>
+                        </span><hr></th>
+                      </tr>
+                  <tr>
+                    <td scope="row" class="fw-semibold pdheading">Name</td>
+                    <td>{{userProfileInfo.name}}</td>
+                  </tr>
+                  <tr>
+                    <td scope="row" class="fw-semibold pdheading">About</td>
+                    <td>{{userProfileInfo.about}}</td>
+                  </tr>
+                  <tr>
+                    <td scope="row" class="fw-semibold pdheading" >Mobile Number</td>
+                    <td>{{userProfileInfo.mobilenumber}}</td>
+                  </tr>
+                </tbody>
+                <ng-template #editDetailsBox>
+                  <tbody>
+                    <tr>
+                        <th scope="col" colspan="2">Personal Details<hr></th>
+                      </tr>
+                  <tr>
+                    <td scope="row" class="fw-semibold pdheading">Name</td>
+                    <td>{{userProfileInfo.name}}</td>
+                  </tr>
+                  <tr>
+                    <td scope="row" class="fw-semibold pdheading">About</td>
+                    <td><input type="text" value={{userProfileInfo.about}} id="userabout" #userabout/></td>
+                  </tr>
+                  <tr>
+                    <td scope="row" class="fw-semibold pdheading" >Mobile Number</td>
+                    <td>{{userProfileInfo.mobilenumber}}</td>
+                  </tr>
+                  <tr>
+                    <td class="p-4"><button class="btn btn-primary px-4" (click)="saveChangesOnPersonalInfo(userabout.value)">Save Changes</button></td>
+                  </tr>
+                </tbody>
+                </ng-template>
+                
+              </table>
+           </div>
+        </div>
+    </div>
+</div>

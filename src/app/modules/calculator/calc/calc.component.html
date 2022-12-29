@@ -1,0 +1,68 @@
+<div id="calcBody" >
+    <div class="card">
+        <div class="card-body">
+          <textarea class="form-control" id="calcInput" [value]="userInput" 
+           rows="2"></textarea>
+          <label id="calcValue" class="text-muted"></label>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div id="calcButtonsUpper">
+                                <button class="btn upperButtonGroup fs-3" style="flex-grow: 1;" (click)="clearClicked()">clear</button>
+                                <button class="btn upperButtonGroup"  style="flex-grow: 1;" (click)="percentageOperatorClicked()"><i class="bi bi-percent"></i></button>
+                                <button class="btn upperButtonGroup"  style="flex-grow: 1;" (click)="operatorClicked('*')"><i class="fs-1">*</i></button>
+                                <button class="btn upperButtonGroup"  style="flex-grow: 2;" (click)="backspaceClicked()"><i class="bi bi-backspace"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+
+<!----------------------------inner table----------------------------------------------------->
+
+                            <table  id="buttonstable" class="table table-borderless">
+                                <tbody>
+                                <tr>
+                                    <td id="9" (click)="numberClicked('9')"><div><button class="btn fs-4 fw-bold">9</button></div></td>
+                                    <td id="8" (click)="numberClicked('8')"><button class="btn fs-4 fw-bold">8</button></td>
+                                    <td id="7" (click)="numberClicked('7')"><button class="btn fs-4 fw-bold">7</button></td>
+                                </tr>
+                                <tr>
+                                    <td id="6" (click)="numberClicked('6')"><button class="btn fs-4 fw-bold">6</button></td>
+                                    <td id="5" (click)="numberClicked('5')"><button class="btn fs-4 fw-bold">5</button></td>
+                                    <td id="4" (click)="numberClicked('4')"><button class="btn fs-4 fw-bold">4</button></td>
+                                </tr>
+                                <tr>
+                                    <td id="3" (click)="numberClicked('3')"><button class="btn fs-4 fw-bold">3</button></td>
+                                    <td id="2" (click)="numberClicked('2')"><button class="btn fs-4 fw-bold">2</button></td>
+                                    <td id="1" (click)="numberClicked('1')"><button class="btn fs-4 fw-bold">1</button></td>                 
+                                </tr>
+                                <tr>
+                                    <td colspan="2" id="0" (click)="numberClicked('0')"><button class="btn fs-4 fw-bold">0</button></td>
+                                    <td id="dot" (click)="numberClicked('.')"><button class="btn fs-4 fw-bold">.</button></td>                 
+                                </tr>
+                                </tbody>
+                            </table>
+
+<!------------------------------inner table ends --------------------------------------------->
+                        </td>
+                        <td>
+                            <div id="calcButtonsBottomRight">
+                                <button class="btn lowerRightButtonGroup" (click)="operatorClicked('/')"><i class="bi bi-slash-lg"></i></button>
+                                <button class="btn lowerRightButtonGroup" (click)="operatorClicked('-')"><i class="bi bi-dash-lg"></i></button>
+                                <button class="btn lowerRightButtonGroup" (click)="operatorClicked('+')"><i class="bi bi-plus-lg"></i></button>
+                                <button class="btn lowerRightButtonGroup fs-2" id="equalsButton" (click)="equalChicked()">=</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+
+
+<div *ngIf="contactChat==undefined;else personalpage" id="defaultpage">
+  
+</div>
+<ng-template #personalpage>
+   <div>
+        <div id="pg">
+           <ul *ngFor="let datespchat of contactChat.chatHistory" class="list-group">
+
+            <span class="text-center"><span class="px-4 datedisplay">{{datespchat.date}}</span></span>
+              <ul *ngFor="let chat of datespchat.chats" class="list-group">
+
+                        <li *ngIf="chat.owner==true;else contactmsg" class="list-group-item">
+                         <div style="float: right;" id="tdChatStyle">
+                             <label class="text-semibold">{{chat.message}}</label>
+                             <span style="margin-left:6px;font-size: 11px;">{{chat.time}}</span>
+                         </div>
+                        </li>
+                        <ng-template #contactmsg>
+                         <li class="list-group-item">
+                           <div style="float:left;" id="tdChatStyle">
+                             <span style="font-size: medium;">{{chat.message}}</span>
+                             <span class="w-100" style="font-size: smaller;text-align: right;">{{chat.time}}</span>
+                           </div>
+                        </li>
+                        </ng-template>
+                    </ul> 
+            
+            </ul>
+        </div>
+      </div>
+        <div id="bottom-user-inputbox">
+            <div class="card">
+                <div class="card-body">
+                   <input type="text" class="form-control" #chatreply id="chatreply" (keyup)="sendReplyOnEnterKeyPress($event,chatreply.value)"/>
+                   <button class="btn btn-success mx-2 px-5 rounded-pill" (click)="sendReplyToSpecifiedPerson(chatreply.value)">Send</button>
+                </div>
+            </div>
+        </div>
+    
+</ng-template>

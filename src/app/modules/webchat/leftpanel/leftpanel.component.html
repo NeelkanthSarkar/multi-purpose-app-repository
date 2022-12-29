@@ -1,0 +1,9 @@
+<div class="d-flex leftpanel">
+    <ul class="list-group d-sm-none d-md-block">
+        <li class="list-group-item" (click)="showSpecificChat($event)" 
+         *ngFor="let chat of userChat;let i=index"><span class="d-none">{{i}}</span>{{chat.contactName}}</li>
+    </ul>
+       <div id="rightpanel">
+        <app-rightpanel [contactChat]="selectedUserChat"></app-rightpanel>
+      </div>
+</div>

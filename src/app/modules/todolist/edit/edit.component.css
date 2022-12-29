@@ -1,0 +1,8 @@
+.card{
+    width: 100%;
+}
+.card-body{
+    width: 80vw;
+    margin: auto;
+    padding: 5rem 2rem 5rem 2rem;
+}

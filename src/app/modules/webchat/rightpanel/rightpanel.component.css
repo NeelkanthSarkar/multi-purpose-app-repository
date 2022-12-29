@@ -1,0 +1,64 @@
+#defaultpage{
+    background-position: center;
+    background-size: cover;
+}   
+#bottom-user-inputbox{
+    position: absolute;
+    bottom: 0;
+
+}
+#bottom-user-inputbox .card{
+    border:none;
+    border-top: 1px solid gainsboro;
+    /* background-color: rgb(233, 255, 231); */
+}
+#bottom-user-inputbox .card-body{
+    display: flex;
+    border: none;
+    padding: 0.5rem;
+    width: 78.8vw;
+
+}
+#bottom-user-inputbox input{
+   
+    height: 3rem;
+    border-radius: 5rem;
+}
+#tdChatStyle{
+  background-color: rgb(247, 246, 246);
+  border-radius: 1rem;  
+  padding: 6px 15px 6px 15px; 
+  margin-top: 2px;
+  max-width: 80%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: flexbox;
+}
+
+#pg{
+   display: flex;
+   flex-direction: column;
+   height: 74.5vh;
+   background-color: white;
+   overflow-y: scroll;
+   scroll-behavior: smooth;
+}
+#pg::-webkit-scrollbar {
+    display: none;
+  }
+ul li{
+    list-style-type: none;
+}
+.datedisplay{
+    background-color: lightgray;
+    border-radius:1rem;
+}
+.list-group-item{
+    border: none;
+    padding-top: 0;
+    padding-bottom:0 ;
+}
+
+
+

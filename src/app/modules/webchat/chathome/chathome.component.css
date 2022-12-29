@@ -1,0 +1,15 @@
+#chat-body{
+    height: 84vh;
+}
+.navbar{
+    background-color: rgb(133, 244, 160);
+}
+
+#nav-right-list ul li{
+    list-style-type: none;
+    font-size: 1.5rem;
+    padding-right: 1rem;
+}
+.navbar-brand:hover{
+    text-decoration: underline;
+}

@@ -1,0 +1,19 @@
+<div class="container-fluid p-0">
+  
+  <nav class="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="profile">
+        <img src={{userProfileInfo.profilepic}} alt="Logo" width="43" height="40" class="d-inline-block rounded-pill">
+              {{userProfileInfo.name}}</a>
+        <div id="nav-right-list">
+          <ul><li><a routerLink="profile"><i class="bi bi-person-circle"></i></a></li></ul>
+        </div>
+    </div>
+  </nav>
+  <div id="chat-body">
+    <div id="leftpanel">
+      <app-leftpanel></app-leftpanel>
+    </div>
+  </div>
+
+</div>

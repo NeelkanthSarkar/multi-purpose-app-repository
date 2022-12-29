@@ -1,0 +1,24 @@
+<div>
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+          <label class="fs-4 fw-semibold mx-2">Add a task</label>
+          <div class="d-flex">
+            <a class="btn btn-outline-success fw-bold fs-5 mx-5 my-2" routerLink="..">Back to list</a>
+          </div>
+        </div>
+          <div class="card">
+            <div class="card-body">
+             <form [formGroup]="todolistform" (ngSubmit)="addNewTaskinTodoList()">
+               <label>Title</label>
+               <input type="text" class="form-control w-75" formControlName="title" />
+               <span *ngIf="title&&title.touched&&title.invalid">Title cannot be empty</span>
+               <label class="mt-4">Description</label>
+               <textarea class="form-control w-75" formControlName="description" rows="3" cols="30"></textarea>
+               <div class="mt-4">
+                 <button class="btn btn-primary px-5" type="submit" [disabled]="!todolistform.valid">Add Task</button>
+               </div>
+             </form>      
+          </div>
+        </div>
+      </nav>
+</div>
