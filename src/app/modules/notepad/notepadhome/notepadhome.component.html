@@ -1,0 +1,160 @@
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg bg-light p-0">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <button class="btn" id="fileMenuButton">File</button>
+                <div id="filemenulistgroup">
+                  <ul class="list-group">
+                    <li class="list-group-item"><button class="btn" (click)="createNewFile()">New</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="displayOpenFromDatabaseBox()">Open</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="saveFileInTheDatabase()">Save</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="displaySaveAsBox()">Save As</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="downloadFileInLocalDisk()">Download File</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="displayRenameFileBox()">Rename</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="deleteFileFromDB()">Delete</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="exitFromApplication()">Exit</button></li>
+                  </ul>  
+                </div>
+              </li>
+              <li class="nav-item">
+                <button class="btn" id="editMenuButton">Edit</button>
+                <div id="editmenulistgroup">
+                  <ul class="list-group">
+                    <li class="list-group-item"><button class="btn" (click)="cutSelectedText()">Cut</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="copySelectedText()">Copy</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="pasteDataFromClipboard()">Paste</button></li>
+                    <li class="list-group-item"><button class="btn" (click)="selectAllText()">Select All</button></li>  
+                    <li class="list-group-item"><button class="btn" (click)="displayFindAndReplaceBox()">Find and replace</button></li>  
+                  </ul>  
+                </div>
+              </li>
+                           
+            </ul>
+           
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid p-0">        
+         <div class="card" id="notepad-outer-card">
+            <div class="card-header py-1 px-3">
+              <ul class="nav nav-tabs card-header-tabs unorderedfilelist">
+                <li *ngFor="let item of listOfFiles;let i=index" class="nav-item">
+                  <label class="nav-link" aria-current="true" id="{{'fileNum'+i}}" (click)="fileNameClicked($event)">{{item.name}}</label>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body p-0">
+                <app-editpage [fileId]="fileId" [saveMenuClicked]="saveMenuClicked" 
+                (setCurrentDataTextarea)="setCurrentDataTextarea($event)"
+                [cutSelectedTextAera]="cutSelectedTextAera"
+                [pasteClipboardText]="pasteClipboardText"
+                [copySelectedTextFlag]="copySelectedTextFlag"
+                [selectAllFlag]="selectAllFlag"
+                [theLetter]="theLetter"
+                [findprev]="findprev"
+                [findnext]="findnext"
+                (findReplaceCurrentResult)="findReplaceCurrentResult($event)"
+                [replacableString]="replacableString"
+                [replaceAllString]="replaceAllString"></app-editpage>
+            </div>
+          </div>
+      </div>
+      <div id="tablet-message-box">
+         <div class="card">
+           <div class="text-center h5">Data saved !</div>
+         </div>
+      </div>
+      <div id="open-file-from-db-box">
+         <div class="card">
+          <div class="h4 mx-3 my-2">Choose a file</div>
+           <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let item of listOfFiles;let i=index" id="{{'openfileid'+i}}" (click)="openFileListItemClicked($event)">{{item.name}}</li>      
+            </ul>
+            <div class="d-flex justify-content-end my-3">
+              <button class="btn btn-primary mx-1 px-4" (click)="openFileSelectedFromDB()">Open</button>
+              <button class="btn btn-primary mx-3 px-4" (click)="cancelOpenFileFromDB()">Cancel</button>            
+            </div>
+           
+           </div>
+         </div>
+      </div>
+      <div id="saveas-renamefile-box">
+        <div class="card">
+          <div class="h4">Save as</div>
+          <div class="card-body">
+            <div>
+              <div>
+                Enter file name <input type="text" class="form-control" id="saveasfilename" #saveasfilename/>
+                Select extension
+                <select class="form-select" #saveselect>
+                  <option value="txt">txt</option>
+                  <option value="js">js</option>
+                  <option value="ts">ts</option>
+                  <option value="html">html</option>
+                  <option value="docs">docs</option>
+                  <option value="rtf">rtf</option>
+                </select>
+              </div>
+              <div class="d-flex justify-content-end my-3">
+                <button class="btn btn-primary mx-1 px-4" (click)="submitSaveAsFileInDB(saveasfilename.value,saveselect.value)">Submit</button>
+                <button class="btn btn-primary mx-4 px-4" (click)="cancelSaveAsFunctionality()">Cancel</button>
+              </div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="rename-current-file-box">
+        <div class="card">
+          <div class="h5">Rename File</div>
+          <div class="card-body">
+            <div class="d-flex">
+              <input type="text" class="form-control" id="rename-file-input" #renamefileinput/>
+              <button class="btn btn-primary mx-1" (click)="renameFile(renamefileinput.value)">Submit</button>
+              <button class="btn btn-primary" (click)="hideRenameFileBox()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="find-replace-box">
+         <div class="card">
+          <div class="d-flex justify-content-between">
+            <h6 class="h6">Find and Replace</h6>
+            <button class="btn p-0 h-50" (click)="closeFindAndReplaceBox()"><i class="bi bi-x-lg"></i></button>
+          </div>
+          
+          
+          <div class="card-body p-0">
+            <hr>
+            <div class="d-flex">
+              <div>
+                <input type="text" class="form-control" id="findInputBox" placeholder="find something"
+                (keyup)="findTheLetter(findInput.value)" #findInput/>                        
+                <input type="text" class="form-control my-1" id="replaceInputBox" placeholder="replace with" #replaceInput/>
+              </div>
+             <div>
+              <label class="p-0 m-0 px-3 text-muted" *ngIf="findAndReplaceResultCount!=0;else elseLabel">{{findAndReplaceResultCount}} results</label>
+              <ng-template #elseLabel><label class="p-0 m-0 px-3"></label></ng-template>
+              <div class="d-flex" style="align-items: end;" id="find-and-replace-button-group">
+                <div id="find-and-replace-up-down">
+                  <button class="btn btn-sm" (click)="findPrevious()"><i class="bi bi-caret-up-fill"></i></button>
+                  <button class="btn btn-sm" (click)="findNext()"><i class="bi bi-caret-down-fill"></i></button>
+                </div>
+                <div>
+                  <button class="btn btn-light px-2 mx-1 btn-sm" (click)="replaceTextFromTextarea(replaceInput.value)">Replace</button>
+                  <button class="btn btn-light px-2 mx-1 btn-sm" (click)="replaceAllText(replaceInput.value)">Replace All</button>
+                </div>
+                
+              </div>
+             </div>
+            </div>
+          </div>
+         </div>
+      </div>
+</div>

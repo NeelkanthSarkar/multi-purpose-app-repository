@@ -6,7 +6,7 @@ import * as $ from 'jquery';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class TTTHomeComponent {
   
   counter:number=0;
   userIDs:number[]=[];

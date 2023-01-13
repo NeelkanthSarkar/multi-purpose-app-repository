@@ -1,0 +1,158 @@
+#fileMenuButton,#editMenuButton{
+    position: relative;
+}
+#fileMenuButton:hover,#editMenuButton:hover{
+    background-color: rgb(115, 227, 231);
+}
+#filemenulistgroup,#editmenulistgroup{
+    position: absolute;
+    z-index: 1;
+    display: none;
+}
+#filemenulistgroup .list-group-item,#editmenulistgroup .list-group-item{
+    padding: 0;
+}
+#filemenulistgroup .list-group-item button,#editmenulistgroup .list-group-item button{
+    padding: 0.6rem 8rem 0.6rem 1rem;
+    margin: 0;
+}
+#filemenulistgroup .list-group-item:hover,#editmenulistgroup .list-group-item:hover{
+    background-color: lightgrey;
+}
+#tablet-message-box{
+    display: none;
+    position: absolute;
+    top: 18%;
+    left:40%;
+}
+#tablet-message-box .card{
+    width: fit-content;
+    height: 3vw;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.5rem;
+    color:white;
+    background-color: rgb(8, 223, 8);
+}
+#notepad-outer-card{
+    width: 100%;
+    height: 87vh;
+}
+#open-file-from-db-box{
+    position: absolute;
+    display: none;
+    top: 20%;
+    left:30%;
+}
+#open-file-from-db-box .card{
+    width: 40vw;
+    height: 60vh;
+    padding: 1rem;
+    background-color: rgb(251, 251, 251);
+}
+#open-file-from-db-box ul{
+    max-height: 38vh;
+    overflow-y: auto;
+}
+#open-file-from-db-box ul li:hover{
+  background-color: lightgray;
+  font-weight: 500;
+  cursor: pointer;
+}
+#saveas-renamefile-box{
+    position: absolute;
+    display: none;
+    top: 27%;
+    left:30%;
+}
+#saveas-renamefile-box .card{
+    padding: 1rem;
+    width: 35vw;
+    height: min-content;
+    background-color: whitesmoke;
+}
+#rename-current-file-box{
+    position:absolute;
+    display: none;
+    top:30%;
+    left:30%;
+}
+#rename-current-file-box .card{
+    width: 44vw;
+    height: min-content;
+    padding: 1rem;
+}
+#find-replace-box{
+    position: absolute;
+    display: none;
+    top:18%;
+    right:0%;
+}
+#find-replace-box .card{
+    width: max-content;
+    height: min-content;
+    padding: 1rem;
+}
+#find-replace-box .card input{
+    width: 26vw;
+}
+#find-replace-box .card #find-and-replace-button-group button{
+    height: min-content;
+    font-weight: 500;
+}
+#find-and-replace-up-down{
+  display: grid;
+  padding: 0;
+  margin: 0;
+}
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

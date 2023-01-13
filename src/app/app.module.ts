@@ -9,6 +9,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TodolistModule } from './modules/todolist/todolist.module';
 import { WebchatModule } from './modules/webchat/webchat.module';
+import { NotepadModule } from './modules/notepad/notepad.module';
+import { HomeMModule } from './modules/home-m/home-m.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { WebchatModule } from './modules/webchat/webchat.module';
     UserAuthModule,
     FormsModule,
     TodolistModule,
-    WebchatModule
+    WebchatModule,
+    NotepadModule,
+    HomeMModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
