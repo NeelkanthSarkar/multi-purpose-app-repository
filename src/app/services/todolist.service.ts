@@ -1,93 +1,52 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TodoListType } from './TodoListType';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodolistService {
+  
 
-  todoListServiceArray:TodoListType[]=[];
-  constructor() {
-    this.todoListServiceArray = [
-      {
-        id:101,
-        title:"task 1",
-        description:"this is task 1 description",
-        date:"12/6/2022,06:23"
-      },
-      {
-        id:102,
-        title:"task 2",
-        description:"this is task 2 description",
-        date:"12/6/2022,06:23"
-      },
-      {
-        id:103,
-        title:"task 3",
-        description:"this is task 3 description",
-        date:"12/6/2022,06:23"
-      },
-      {
-        id:104,
-        title:"task 4",
-        description:"this is task 4 description",
-        date:"12/6/2022,06:23"
-      },
-      {
-        id:105,
-        title:"task 5",
-        description:"this is task 5 description",
-        date:"12/6/2022,06:23"
-      }
-    ];
+   /*
+   ----------------------- TODO LIST API ----------------------------
+   Method                   URL                    Description
+   ------------------------------------------------------------------
+   GET                     /list                   get the list of tasks
+   GET                     /list/id                get item by ID
+   POST                    /add                    add a new task
+   PUT                     /update                 update a item
+   DELETE                  /delete/id              delete item by ID
+   */
+
+   apiURL = "http://localhost:8080/todolist/";
+   maxId:number=-1;
+   listObj:any;
+   constructor(private http:HttpClient){}
+   getTotoListArray():Observable<Object>{
+    this.listObj = this.http.get(this.apiURL+"list");
+    return this.listObj;
    }
 
-   getTotoListArray(){
-    return this.todoListServiceArray;
+   addNewTaskintoTodoListArray(item:TodoListType):Observable<Object>{
+      return this.http.post(this.apiURL+"add",item);
    }
 
-   addNewTaskintoTodoListArray(item:TodoListType){
-      this.todoListServiceArray.push(item);
-   }
-
-   getMaximumIdValue():number
+   getItemById(id:number):Observable<Object>
    {
-    let max:number=0;
-     for(let item of this.todoListServiceArray)
-     {
-      if(max<item.id)
-      max=item.id;
-     }
-     return max;
+    return this.http.get(this.apiURL+"list/"+id);
    }
-
-   getItemById(id:number):TodoListType
+   updateOneItem(item:TodoListType):Observable<Object>
    {
-    let item:TodoListType={id:0,title:'',description:'',date:''};
-    for(let tem of this.todoListServiceArray)
-    {
-      if(tem.id==id)
-      item = tem;
-    }
-     return item;
-   }
-   updateOneItem(item:TodoListType):boolean
-   {
-     for(let product of this.todoListServiceArray)
-     {
-      if(product.id==item.id)
-      {
-        product.title = item.title;
-        product.description = item.description;
-        product.date = item.date;
-        return true;
-      }
-     }
-     return false;
+     return this.http.put(this.apiURL+"update",item);
    }
 
    deleteItemById(id:number)
    {
-     this.todoListServiceArray = this.todoListServiceArray.filter(item=>item.id!=id);
+     return this.http.delete(this.apiURL+"delete/"+id);
+   }
+   setMaxId(max: number) {
+    this.maxId = max;
    }
 }

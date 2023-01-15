@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TodolistService } from 'src/app/services/todolist.service';
 import { TodoListType } from 'src/app/services/TodoListType';
+import * as $ from 'jquery';
+import { ListComponent } from '../list/list.component';
 
 @Component({
   selector: 'app-newtask',
@@ -21,13 +23,24 @@ export class NewtaskComponent {
     let currentdate = this.getDateinString();
     
     let item:TodoListType = {
-      id:this.todoservice.getMaximumIdValue()+1,
+      
+      id:this.todoservice.maxId+1,
       title:''+this.todolistform.get('title')?.value,
       description:''+this.todolistform.get('description')?.value,
       date:currentdate
     }
-    this.todoservice.addNewTaskintoTodoListArray(item);
-    alert("\nNew Task Added Successfully !");
+    this.todoservice.addNewTaskintoTodoListArray(item).subscribe(res=>{
+      if(res==null||res==undefined){
+        alert("Adding new task failed. Try again later.");
+      }
+      else{
+        alert("Adding new task successful");
+        $('#title').val('');
+        $('#description').val('');
+        document.getElementById('backtolistbutton')?.click();
+      }
+    });
+    
   }
 
   get title()
@@ -43,15 +56,7 @@ export class NewtaskComponent {
     let day = new Date().getDate();
     let mon = new Date().getMonth();
     let year = new Date().getFullYear();
-    let hr = new Date().getHours();
-    let min = new Date().getMinutes();
-    let ampm='';
-    if(hr<12)
-    ampm='AM'
-    else
-    ampm='PM'
-  
-    return day+'/'+(mon+1)+'/'+year+' , '+hr+':'+min+ampm;
+    return day+'/'+(mon+1)+'/'+year;
   }
   
 }

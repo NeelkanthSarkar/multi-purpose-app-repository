@@ -13,13 +13,52 @@ export class ListComponent implements OnInit{
   }
   
   myTodoList:TodoListType[]=[];
+ 
 
   ngOnInit(): void {
-    this.myTodoList = this.todolistservice.getTotoListArray();
+    this.todolistservice.getTotoListArray().subscribe(res=>{
+      if(res==null||res==undefined){
+        alert("something went wrong .. no data found");
+      }
+      else{
+        this.myTodoList = res as TodoListType[];
+        this.setMaxIdValue();
+      }
+    });
   }
   deleteCurrentTask(id:number)
   {
-     this.todolistservice.deleteItemById(id);
-     this.myTodoList = this.todolistservice.getTotoListArray();
+    if(confirm("Are you sure to delete the task ?")){
+      this.todolistservice.deleteItemById(id).subscribe(res=>{
+        if(res==null||res==undefined){
+          alert("something went wrong..delete operation unsuccessful !");
+        }
+        else{
+           this.todolistservice.getTotoListArray().subscribe(res=>{
+             if(res==null||res==undefined){
+              alert("No data found.");
+             }
+             else{
+               this.myTodoList = res as TodoListType[];
+               this.setMaxIdValue();
+             }
+           });
+        }
+       });       
+    }     
   }
+  setMaxIdValue(){
+    let max=-1;
+    for(let item of this.myTodoList){
+     if(item.id>max){
+       max=item.id;
+     }
+    }
+    if(max!=-1)
+    this.todolistservice.setMaxId(max);
+    else
+    this.todolistservice.setMaxId(100);
+  }
+
+
 }
